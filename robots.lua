@@ -6,18 +6,6 @@ circuits = {
 	"processing-unit",
 }
 
-function get_tiered_robot_name(tmpl, tier)
-	if tier == 0 then
-		if string.find(tmpl, "construction") then
-			return "construction-robot"
-		else
-			return "logistic-robot"
-		end
-	else
-		return string.format(tmpl, tier)
-	end
-end
-
 function get_fast_tiered_spec(tier)
 	return {
 		speed = 2 ^ tier,
@@ -53,7 +41,7 @@ function register(base_entity, base_item, name, spec, ingredients)
 	local recipe = {
 		type = "recipe",
 		name = name,
-		enabled = true,
+		enabled = false,
 		energy_required = 1,
 		ingredients = table.deepcopy(ingredients),
 		results = { { type = "item", name = name, amount = 1 } },
@@ -69,9 +57,8 @@ end
 
 -- Fast construction robot MK1-3 --
 for i = 1, 3 do
-	tmpl = "yokaze-fast-construction-robot-mk%d"
-	name = get_tiered_robot_name(tmpl, i)
-	prev = get_tiered_robot_name(tmpl, i - 1)
+	name = utility.get_tiered_robot_name("construction", "fast", i)
+	prev = utility.get_tiered_robot_name("construction", "fast", i - 1)
 
 	ingredients = {
 		{ type = "item", name = prev, amount = 2 },
@@ -97,9 +84,8 @@ end
 
 -- Heavy construction robot MK1-3 --
 for i = 1, 3 do
-	tmpl = "yokaze-heavy-construction-robot-mk%d"
-	name = get_tiered_robot_name(tmpl, i)
-	prev = get_tiered_robot_name(tmpl, i - 1)
+	name = utility.get_tiered_robot_name("construction", "heavy", i)
+	prev = utility.get_tiered_robot_name("construction", "heavy", i - 1)
 
 	ingredients = {
 		{ type = "item", name = prev, amount = 2 },
@@ -125,9 +111,8 @@ end
 
 -- Fast logistic robot MK1-3 --
 for i = 1, 3 do
-	tmpl = "yokaze-fast-logistic-robot-mk%d"
-	name = get_tiered_robot_name(tmpl, i)
-	prev = get_tiered_robot_name(tmpl, i - 1)
+	name = utility.get_tiered_robot_name("logistic", "fast", i)
+	prev = utility.get_tiered_robot_name("logistic", "fast", i - 1)
 
 	ingredients = {
 		{ type = "item", name = prev, amount = 2 },
@@ -154,8 +139,8 @@ end
 -- Heavy logistic robot MK1-3 --
 for i = 1, 3 do
 	tmpl = "yokaze-heavy-logistic-robot-mk%d"
-	name = get_tiered_robot_name(tmpl, i)
-	prev = get_tiered_robot_name(tmpl, i - 1)
+	name = utility.get_tiered_robot_name("logistic", "heavy", i)
+	prev = utility.get_tiered_robot_name("logistic", "heavy", i - 1)
 
 	ingredients = {
 		{ type = "item", name = prev, amount = 2 },

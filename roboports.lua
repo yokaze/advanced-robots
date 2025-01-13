@@ -22,14 +22,6 @@ end
 
 parallels = { 6, 8, 12 }
 
-function get_tiered_roboport_name(tier)
-	if tier == 0 then
-		return "roboport"
-	else
-		return string.format("yokaze-wide-roboport-mk%d", tier)
-	end
-end
-
 function register(base_entity, base_item, name, spec, ingredients)
 	local entity = table.deepcopy(base_entity)
 	entity.name = name
@@ -62,7 +54,7 @@ function register(base_entity, base_item, name, spec, ingredients)
 	local recipe = {
 		type = "recipe",
 		name = name,
-		enabled = true,
+		enabled = false,
 		energy_required = 10,
 		ingredients = table.deepcopy(ingredients),
 		results = { { type = "item", name = name, amount = 1 } },
@@ -73,8 +65,8 @@ end
 
 -- Wide roboport MK1-3 --
 for i = 1, 3 do
-	name = get_tiered_roboport_name(i)
-	prev = get_tiered_roboport_name(i - 1)
+	name = utility.get_tiered_roboport_name(i)
+	prev = utility.get_tiered_roboport_name(i - 1)
 	spec = {
 		range = 2 ^ i,
 		charge = 2 ^ i,
