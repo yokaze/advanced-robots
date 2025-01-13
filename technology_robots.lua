@@ -7,12 +7,12 @@ for _, sub in ipairs({ "fast", "heavy" }) do
 		prev = utility.get_tiered_robot_research_name("construction", sub, i - 1)
 
 		if sub == "fast" then
-			tech_direct = string.format("worker-robots-speed-%d", i)
+			tech_direct = string.format("worker-robots-speed-%d", i * 2)
 			tech_cross = string.format("worker-robots-storage-%d", i - 1)
-			cost = 10
+			cost = 4
 		else
 			tech_direct = string.format("worker-robots-storage-%d", i)
-			tech_cross = string.format("worker-robots-speed-%d", i - 1)
+			tech_cross = string.format("worker-robots-speed-%d", (i - 1) * 2)
 			cost = 4
 		end
 
@@ -22,7 +22,9 @@ for _, sub in ipairs({ "fast", "heavy" }) do
 			prev,
 			tech_direct,
 		}
-		if i >= 2 then
+		if i == 1 then
+			table.insert(tech.prerequisites, "low-density-structure")
+		elseif i >= 2 then
 			table.insert(tech.prerequisites, tech_cross)
 		end
 
@@ -41,12 +43,12 @@ for _, sub in ipairs({ "fast", "heavy" }) do
 		prev = utility.get_tiered_robot_research_name("logistic", sub, i - 1)
 
 		if sub == "fast" then
-			tech_direct = string.format("worker-robots-speed-%d", i)
+			tech_direct = string.format("worker-robots-speed-%d", i * 2)
 			tech_cross = string.format("worker-robots-storage-%d", i - 1)
-			cost = 10
+			cost = 4
 		else
 			tech_direct = string.format("worker-robots-storage-%d", i)
-			tech_cross = string.format("worker-robots-speed-%d", i - 1)
+			tech_cross = string.format("worker-robots-speed-%d", (i - 1) * 2)
 			cost = 4
 		end
 
@@ -56,7 +58,9 @@ for _, sub in ipairs({ "fast", "heavy" }) do
 			prev,
 			tech_direct,
 		}
-		if i >= 2 then
+		if i == 1 then
+			table.insert(tech.prerequisites, "low-density-structure")
+		elseif i >= 2 then
 			table.insert(tech.prerequisites, tech_cross)
 		end
 
