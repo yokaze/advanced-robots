@@ -31,7 +31,7 @@ for i = 1, 3 do
 		tech.prerequisites = pre[i]
 	end
 	tech.effects = { { recipe = name, type = "unlock-recipe" } }
-	tech.icon = table.deepcopy(data.raw["technology"]["robotics"].icon)
+	tech.icons = util.technology_icon_constant_range(data.raw["technology"]["worker-robots-speed-1"].icons[1].icon)
 
 	tech_cost = string.format("research-speed-%d", i + 3)
 	tech.unit = table.deepcopy(data.raw["technology"][tech_cost].unit)

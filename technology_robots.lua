@@ -5,18 +5,20 @@ for _, sub in ipairs({ "fast", "heavy" }) do
 	for i = 1, 3 do
 		name = utility.get_tiered_robot_research_name("construction", sub, i)
 		prev = utility.get_tiered_robot_research_name("construction", sub, i - 1)
+		tech = table.deepcopy(data.raw["technology"]["construction-robotics"])
 
 		if sub == "fast" then
 			tech_direct = string.format("worker-robots-speed-%d", i * 2)
 			tech_cross = string.format("worker-robots-storage-%d", i - 1)
 			cost = 4
+			tech.icons = util.technology_icon_constant_movement_speed(tech.icon)
 		else
 			tech_direct = string.format("worker-robots-storage-%d", i)
 			tech_cross = string.format("worker-robots-speed-%d", (i - 1) * 2)
 			cost = 4
+			tech.icons = util.technology_icon_constant_capacity(tech.icon)
 		end
 
-		tech = table.deepcopy(data.raw["technology"]["construction-robotics"])
 		tech.name = name
 		tech.prerequisites = {
 			prev,
@@ -41,18 +43,20 @@ for _, sub in ipairs({ "fast", "heavy" }) do
 	for i = 1, 3 do
 		name = utility.get_tiered_robot_research_name("logistic", sub, i)
 		prev = utility.get_tiered_robot_research_name("logistic", sub, i - 1)
+		tech = table.deepcopy(data.raw["technology"]["logistic-robotics"])
 
 		if sub == "fast" then
 			tech_direct = string.format("worker-robots-speed-%d", i * 2)
 			tech_cross = string.format("worker-robots-storage-%d", i - 1)
 			cost = 4
+			tech.icons = util.technology_icon_constant_movement_speed(tech.icon)
 		else
 			tech_direct = string.format("worker-robots-storage-%d", i)
 			tech_cross = string.format("worker-robots-speed-%d", (i - 1) * 2)
 			cost = 4
+			tech.icons = util.technology_icon_constant_capacity(tech.icon)
 		end
 
-		tech = table.deepcopy(data.raw["technology"]["logistic-robotics"])
 		tech.name = name
 		tech.prerequisites = {
 			prev,
