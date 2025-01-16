@@ -22,7 +22,7 @@ end
 
 parallels = { 6, 8, 12 }
 
-function register(base_entity, base_item, name, spec, ingredients)
+function register(base_entity, base_item, name, spec, ingredients, icon)
 	local entity = table.deepcopy(base_entity)
 	entity.name = name
 	entity.construction_radius = entity.construction_radius * spec.range
@@ -50,6 +50,15 @@ function register(base_entity, base_item, name, spec, ingredients)
 	local item = table.deepcopy(base_item)
 	item.name = name
 	item.place_result = name
+	item.icons = {
+		{
+			icon = item.icon,
+		},
+		{
+			icon = icon,
+			draw_background = true,
+		},
+	}
 
 	local recipe = {
 		type = "recipe",
@@ -80,5 +89,12 @@ for i = 1, 3 do
 		{ type = "item", name = parts[i], amount = 50 },
 	}
 
-	register(data.raw["roboport"]["roboport"], data.raw["item"]["roboport"], name, spec, ingredients)
+	register(
+		data.raw["roboport"]["roboport"],
+		data.raw["item"]["roboport"],
+		name,
+		spec,
+		ingredients,
+		string.format("__advanced-robots__/graphics/W%d.png", i)
+	)
 end

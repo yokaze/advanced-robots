@@ -1,3 +1,5 @@
+-- https://github.com/wube/factorio-data/blob/master/core/lualib/util.lua
+
 require("utility")
 
 -- Fast/Heavy construction robot MK1-3 --

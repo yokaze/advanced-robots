@@ -24,7 +24,7 @@ function get_heavy_tiered_spec(tier)
 	}
 end
 
-function register(base_entity, base_item, name, spec, ingredients)
+function register(base_entity, base_item, name, spec, ingredients, icon)
 	local entity = table.deepcopy(base_entity)
 	entity.name = name
 	entity.minable.result = name
@@ -37,6 +37,15 @@ function register(base_entity, base_item, name, spec, ingredients)
 	local item = table.deepcopy(base_item)
 	item.name = name
 	item.place_result = name
+	item.icons = {
+		{
+			icon = item.icon,
+		},
+		{
+			icon = icon,
+			draw_background = true,
+		},
+	}
 
 	local recipe = {
 		type = "recipe",
@@ -78,7 +87,8 @@ for i = 1, 3 do
 		data.raw["item"]["construction-robot"],
 		name,
 		get_fast_tiered_spec(i),
-		ingredients
+		ingredients,
+		string.format("__advanced-robots__/graphics/F%d.png", i)
 	)
 end
 
@@ -105,7 +115,8 @@ for i = 1, 3 do
 		data.raw["item"]["construction-robot"],
 		name,
 		get_heavy_tiered_spec(i),
-		ingredients
+		ingredients,
+		string.format("__advanced-robots__/graphics/H%d.png", i)
 	)
 end
 
@@ -132,7 +143,8 @@ for i = 1, 3 do
 		data.raw["item"]["logistic-robot"],
 		name,
 		get_fast_tiered_spec(i),
-		ingredients
+		ingredients,
+		string.format("__advanced-robots__/graphics/F%d.png", i)
 	)
 end
 
@@ -160,6 +172,7 @@ for i = 1, 3 do
 		data.raw["item"]["logistic-robot"],
 		name,
 		get_heavy_tiered_spec(i),
-		ingredients
+		ingredients,
+		string.format("__advanced-robots__/graphics/H%d.png", i)
 	)
 end
