@@ -12,11 +12,12 @@ function multiply_unit_value(unit_value, ratio)
 	return string.gsub(unit_value, value, tonumber(value) * ratio)
 end
 
-function get_tiered_roboport_name(tier)
+-- sub: fast or wide
+function get_tiered_roboport_name(sub, tier)
 	if tier == 0 then
 		return "roboport"
 	else
-		return string.format("yokaze-wide-roboport-mk%d", tier)
+		return string.format("yokaze-%s-roboport-mk%d", sub, tier)
 	end
 end
 

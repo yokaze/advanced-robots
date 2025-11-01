@@ -71,9 +71,12 @@ Recipes for the logistic robots are similar.
 | Name | Range | Radar | Charge | Idle |
 | ---- | ----: | ----: | ----: | ----: |
 | Roboport | 1x | 2 x 2 | 4 x 500kW | 50kW |
+| Fast roboport MK1 | 1x | 2 x 2 | 6 x 1.0MW | 50kW |
+| Fast roboport MK2 | 1x | 2 x 2 | 8 x 2.0MW | 50kW |
+| Fast roboport MK3 | 1x | 2 x 2 | 12 x 4.0MW | 50kW |
 | Wide roboport MK1 | 2x | 4 x 4 | 6 x 1.0MW | 200kW |
 | Wide roboport MK2 | 4x | 7 x 7 | 8 x 2.0MW | 800kW |
-| Wide roboport MK3 | 8x | 14 x 14 | 12 x 4.0MW | 3.2MW |
+| Wide roboport MK3 | 6x | 11 x 11 | 12 x 4.0MW | 1.8MW |
 
 Wide roboports need a large amount of energy on idle, because they implement radar functionality in 2.0.
 

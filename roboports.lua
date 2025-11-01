@@ -72,16 +72,43 @@ function register(base_entity, base_item, name, spec, ingredients, icon)
 	data:extend({ entity, item, recipe })
 end
 
--- Wide roboport MK1-3 --
+-- Fast roboport MK1-3 --
 for i = 1, 3 do
-	name = utility.get_tiered_roboport_name(i)
-	prev = utility.get_tiered_roboport_name(i - 1)
+	name = utility.get_tiered_roboport_name("fast", i)
+	prev = utility.get_tiered_roboport_name("fast", i - 1)
 	spec = {
-		range = 2 ^ i,
+		range = 1,
 		charge = 2 ^ i,
 		parallel = parallels[i],
 		battery = (2 ^ i) * parallels[i] / 4,
-		usage = 4 ^ i,
+		usage = 1,
+	}
+	ingredients = {
+		{ type = "item", name = prev, amount = 1 },
+		{ type = "item", name = circuits[i], amount = 50 },
+		{ type = "item", name = parts[i], amount = 50 },
+	}
+
+	register(
+		data.raw["roboport"]["roboport"],
+		data.raw["item"]["roboport"],
+		name,
+		spec,
+		ingredients,
+		string.format("__advanced-robots__/graphics/F%d.png", i)
+	)
+end
+
+-- Wide roboport MK1-3 --
+for i = 1, 3 do
+	name = utility.get_tiered_roboport_name("wide", i)
+	prev = utility.get_tiered_roboport_name("wide", i - 1)
+	spec = {
+		range = 2 * i,
+		charge = 2 ^ i,
+		parallel = parallels[i],
+		battery = (2 ^ i) * parallels[i] / 4,
+		usage = 4 * i * i,
 	}
 	ingredients = {
 		{ type = "item", name = prev, amount = 1 },
